@@ -1,252 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.hsbc.hbmx.htsl-m588.fraud.lit</groupId>
-    <artifactId>fraud-services</artifactId>
-    <version>1.1.6</version>
-    <packaging>war</packaging>
+Actúa como un Arquitecto de Software Senior y Tech Lead especializado en Java, Spring Boot y despliegues en servidores de aplicaciones corporativos (IBM Open Liberty / WebSphere).
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.0</version> <relativePath/> </parent>
+Necesito que generes una documentación técnica exhaustiva en formato Markdown (lista para un README.md o wiki de Confluence) a partir de los fragmentos de código, archivos de configuración (pom.xml, application.properties/yml) y estructura de paquetes que te pegaré a continuación.
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>21</java.version>
-        
-        <apache-cxf.version>4.0.4</apache-cxf.version>
-        <jasypt.version>3.0.5</jasypt.version>
-        <poi.version>5.2.5</poi.version>
-        <bouncycastle.version>1.78.1</bouncycastle.version>
-        <nimbus-jose.version>9.37.3</nimbus-jose.version>
-        <openpdf.version>1.3.35</openpdf.version>
+Por favor, estructura la documentación con los siguientes puntos obligatorios:
 
-        <start-class>com.hsbc.hbmx.m588.fraud.FraudServicesConfig</start-class>
-        <sonar.projectKey>com.hsbc.hbmx.htsl-m588.fraud.lit:fraud-services</sonar.projectKey>
-    </properties>
+1. **Visión General y Objetivo del Módulo:**
+   - Propósito funcional del servicio.
+   - Tipo de empaquetado (WAR, EAR, JAR ejecutable) y servidor de destino.
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+2. **Pila Tecnológica y Requisitos Previos:**
+   - Versión de JDK y framework principal (Spring Boot / Jakarta EE).
+   - Servidores de aplicaciones soportados y peculiaridades del contenedor (ej. Liberty / Tomcat).
+   - Dependencias clave (ej. Apache CXF, clientes HTTP, drivers de BD, mensajería).
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-log4j2</artifactId>
-        </dependency>
+3. **Arquitectura y Organización de Paquetes:**
+   - Desglose y responsabilidad de cada paquete (controladores, servicios, modelos, utilidades compartidas, páginas JSP/recursos estáticos).
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
+4. **Variables de Entorno y Configuración Crítica:**
+   - Explicación de cada propiedad de configuración.
+   - Casos especiales, advertencias técnicas o dependencias entre flags (ej. configuración de puertos de Actuator vs servidor embebido/externo, context paths, timeouts).
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jdbc</artifactId>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-ldap</artifactId>
-        </dependency>
+5. **Guía de Compilación, Pruebas y Despliegue Local:**
+   - Comandos Maven/Gradle exactos para compilar, ignorar tests si aplica, empaquetar artefactos (.war / .ear) y ejecutar en local.
+   - Perfiles de entorno (dev, uat, prod) si los detectas.
 
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-dbcp2</artifactId>
-        </dependency>
+6. **Endpoints y Contratos de Integración (si aplica):**
+   - Rutas principales, métodos HTTP, cabeceras requeridas y códigos de error estándar.
 
-        <dependency>
-            <groupId>com.oracle.database.jdbc</groupId>
-            <artifactId>ojdbc11</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+7. **Bitácora de Migración / Actualizaciones Técnicas:**
+   - Cambios relevantes asociados a upgrades de versión (ej. Java 8/11 a 21, javax.* a jakarta.*, compatibilidad de librerías).
 
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-spring-boot-starter-jaxrs</artifactId>
-            <version>${apache-cxf.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-rs-security-cors</artifactId>
-            <version>${apache-cxf.version}</version>
-        </dependency>
+---
+A continuación te comparto el código y archivos para procesar:
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.jaxrs</groupId>
-            <artifactId>jackson-jaxrs-json-provider</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.ulisesbocchio</groupId>
-            <artifactId>jasypt-spring-boot-starter</artifactId>
-            <version>${jasypt.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcpkix-jdk18on</artifactId>
-            <version>${bouncycastle.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk18on</artifactId>
-            <version>${bouncycastle.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.nimbusds</groupId>
-            <artifactId>nimbus-jose-jwt</artifactId>
-            <version>${nimbus-jose.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.librepdf</groupId>
-            <artifactId>openpdf</artifactId>
-            <version>${openpdf.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>${poi.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            </dependency>
-
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <finalName>fraud-services-litigio</finalName>
-        
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-                <excludes>
-                    <exclude>**/application.properties</exclude>
-                </excludes>
-            </resource>
-        </resources>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>3.3.2</version>
-            </plugin>
-            
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.12</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
-    <distributionManagement>
-        <repository>
-            <id>prd</id>
-            <name>Internal Prod</name>
-            <url>https://nexus306.systems.uk.hsbc:8081/nexus/repository/maven-hsbc-internal-prod_n3p</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>Internal Snapshots</name>
-            <url>https://nexus306.systems.uk.hsbc:8081/nexus/repository/maven-hsbc-internal-snapshots_n3p</url>
-        </snapshotRepository>
-    </distributionManagement>
-
-</project>
+[PEGA AQUÍ TU CÓDIGO, POM.XML, APPLICATION.PROPERTIES O ESTRUCTURA DE ARCHIVOS]
