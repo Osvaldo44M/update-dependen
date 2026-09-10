@@ -1,36 +1,30 @@
-Actúa como un Arquitecto de Software Senior y Tech Lead especializado en Java, Spring Boot y despliegues en servidores de aplicaciones corporativos (IBM Open Liberty / WebSphere).
+Actúa como un Desarrollador Senior / Tech Lead que acaba de ser asignado a este proyecto hoy y tiene que:
+1. Clonarlo, compilarlo y levantarlo en local sin pedir ayuda a nadie.
+2. Atender un bug crítico en producción o implementar una nueva funcionalidad la próxima semana.
 
-Necesito que generes una documentación técnica exhaustiva en formato Markdown (lista para un README.md o wiki de Confluence) a partir de los fragmentos de código, archivos de configuración (pom.xml, application.properties/yml) y estructura de paquetes que te pegaré a continuación.
+Revisa la documentación técnica generada a continuación con un ojo 100% crítico y respóndeme con total franqueza:
 
-Por favor, estructura la documentación con los siguientes puntos obligatorios:
+Si tú fueras la persona (o la IA) que debe tomar la responsabilidad total de este proyecto a partir de hoy:
+- ¿Te sentirías con la confianza y claridad suficiente leyendo este documento?
+- ¿Qué información sientes que falta, es ambigua o te haría perder horas deduciendo cosas por tu cuenta?
+- ¿Qué partes están redactadas de forma genérica o como "plantilla" que necesiten ser aterrizadas con datos reales del código?
 
-1. **Visión General y Objetivo del Módulo:**
-   - Propósito funcional del servicio.
-   - Tipo de empaquetado (WAR, EAR, JAR ejecutable) y servidor de destino.
+Por favor, estructura tu análisis en estos 3 puntos:
 
-2. **Pila Tecnológica y Requisitos Previos:**
-   - Versión de JDK y framework principal (Spring Boot / Jakarta EE).
-   - Servidores de aplicaciones soportados y peculiaridades del contenedor (ej. Liberty / Tomcat).
-   - Dependencias clave (ej. Apache CXF, clientes HTTP, drivers de BD, mensajería).
+1. Evaluación de Fricción en el Onboarding (Lo que falta o confunde):
+   - Vacíos en prerrequisitos, variables de entorno locales vs servidor, o dependencias externas (bases de datos, colas MQ, endpoints de otros sistemas).
+   - Comportamientos o reglas de negocio críticas que el código tiene pero la documentación no explica.
+   - Puntos ciegos sobre el ciclo de vida del despliegue (particularidades de Liberty, empaquetado EAR/WAR, perfiles).
 
-3. **Arquitectura y Organización de Paquetes:**
-   - Desglose y responsabilidad de cada paquete (controladores, servicios, modelos, utilidades compartidas, páginas JSP/recursos estáticos).
+2. Propuestas de Mejora Concretas:
+   - ¿Qué secciones eliminarías por redundantes?
+   - ¿Qué tablas, diagramas de flujo o ejemplos de payloads (request/response) agregarías para que sea inmediatamente comprensible?
+   - ¿Qué preguntas técnicas harías al equipo anterior para completar los huecos?
 
-4. **Variables de Entorno y Configuración Crítica:**
-   - Explicación de cada propiedad de configuración.
-   - Casos especiales, advertencias técnicas o dependencias entre flags (ej. configuración de puertos de Actuator vs servidor embebido/externo, context paths, timeouts).
-
-5. **Guía de Compilación, Pruebas y Despliegue Local:**
-   - Comandos Maven/Gradle exactos para compilar, ignorar tests si aplica, empaquetar artefactos (.war / .ear) y ejecutar en local.
-   - Perfiles de entorno (dev, uat, prod) si los detectas.
-
-6. **Endpoints y Contratos de Integración (si aplica):**
-   - Rutas principales, métodos HTTP, cabeceras requeridas y códigos de error estándar.
-
-7. **Bitácora de Migración / Actualizaciones Técnicas:**
-   - Cambios relevantes asociados a upgrades de versión (ej. Java 8/11 a 21, javax.* a jakarta.*, compatibilidad de librerías).
+3. Versión Refinada y Definitiva:
+   - Reescribe la documentación ajustando todos los puntos débiles identificados, dejándola lista para producción/Confluence con un estándar riguroso de ingeniería.
 
 ---
-A continuación te comparto el código y archivos para procesar:
+Aquí está la documentación actual para auditar:
 
-[PEGA AQUÍ TU CÓDIGO, POM.XML, APPLICATION.PROPERTIES O ESTRUCTURA DE ARCHIVOS]
+[PEGA AQUÍ LA DOCUMENTACIÓN GENERADA]
